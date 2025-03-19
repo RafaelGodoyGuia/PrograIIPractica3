@@ -21,6 +21,6 @@ public class Main {
      * @param args Argumentos de línea de comandos (no se utilizan en este programa).
      */
     public static void main(String[] args){
-        System.out.println(Matematicas.generarNumeroPiFuncional(1000000));
+        System.out.println(Matematicas.generarNumeroPiFuncional(100000000));
     }
 }

@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 /**
  * Clase que proporciona utilidades matemáticas.
@@ -38,16 +39,15 @@ public class Matematicas{
         Random random = new Random();
 
         Supplier<Double> coordenada = random::nextDouble;
-        BiPredicate<Double, Double> dentroCirculo = (x, y) -> Math.pow(x, 2) + Math.pow(y, 2) <= 1;
-        long puntosDentroCirculo = IntStream.
+        BiPredicate<Double, Double> dentroCirculo = (x, y) -> Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)) <= 1;
+        long puntosDentroCirculo = LongStream.
                 range(0, (int)pasos).
-                parallel().
                 filter(i -> {
                     double x = coordenada.get();
                     double y = coordenada.get();
                     return (dentroCirculo.test(x, y));
                 }).
                 count();
-        return ((double) (4 * ((double)puntosDentroCirculo / pasos)));
+        return 4 * ((double)puntosDentroCirculo / pasos);
     }
 }
